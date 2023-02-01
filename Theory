@@ -1,0 +1,6 @@
+In prediction based technique,the o/p number we get for a text is the result of the prediction by an algorithm and this algorithm is generally a deep learning based 
+algorithm,eg-word to Vec.
+Word to Vec is a deep learning based technique.
+It is a word embedding technique whose work is to convert a given word into collection of numbers(vector).
+It is required because we cant directly process words-we need numbers.
+Since vector is dense,so overfitting does not occur in Word-Vec.
