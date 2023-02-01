@@ -4,3 +4,26 @@ Word to Vec is a deep learning based technique.
 It is a word embedding technique whose work is to convert a given word into collection of numbers(vector).
 It is required because we cant directly process words-we need numbers.
 Since vector is dense,so overfitting does not occur in Word-Vec.
+
+Types of Word2Vec:-
+1)CBOW(Continous Bag of Word)
+2)skip-gram
+
+Both are neural networks-shallow neural networks-only architectural difference b/w the two.
+
+CBOW:-
+The X,Y prediction problem has been brought down to a ML problem(this is the fake problem we were taking about) and we use deep learning model to predict Y and we will see
+its architecture.
+The hidden layer has 3 nodes bcz. we have decided that each word will be represented by 3 dimensional vector.
+Initially the weights of the ANN will be initialised randomly.
+The idea of this entire exercise of loss finding and backpropagaton is to adjust these weights so that the loss is reduced.
+Embeddings are hidden in the (3*5) section.
+The vector representation of watch will be [w1,w2,w3] i.e. the weights leading to watch (wala node) in the (3*5) (last section)section of the ANN.
+This all function is done by the libraries.
+
+Skip-grams:-
+The dummy problem is reversed.
+Here the vector representation of the word is in the (5*3) layer i.e the first layer.
+
+If working with small data then select CBOW bcz. CBOW is fast and more accurate result on small data.
+If working with large data,use skip-gram
