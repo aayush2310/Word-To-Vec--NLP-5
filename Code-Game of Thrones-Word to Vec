@@ -1,0 +1,72 @@
+import numpy as np
+import pandas as pd
+
+!pip install gensim
+
+import gensim
+import os
+
+from nltk import sent_tokenize
+from gensim.utils import simple_preprocess
+
+story=[]
+for filename in os.listdir('data'):
+ 
+     f=open(os.path.join('data',filename))
+     corpus=f.read()
+     raw_sent=sent_tokenize(corpus)
+     for sent in raw_sent:
+         story.append(simple_preprocess(sent))
+         
+story
+
+len(story)
+
+#min_count=2--->we will take only those sentences which have at least 2 words
+
+model=gensim.models.Word2Vec(
+      window=10
+      min_count=2
+)    
+
+model.build_vocab(story)
+
+model.train(story,total_examples=model.corpus_count,epochs=model.epochs)
+
+model.wv.most_similar('daenerys')
+
+#wv-->word to vec
+
+model.wv.doesnt_match(['jon','rikon','robb','arya','sansa','bran'])
+
+model.wv.doesnt_match(['cersei','jaime','bronn','tyrion'])
+
+model.wv['king']
+
+model.wv['king'].shape
+
+model.wv.similarity('arya','sansa')
+
+#REDUCING THE DIMENSION TO PLOT THE GRAPH
+
+model.wv.get_normed_vectors()
+
+model.wv.get_normed_vectors().shape
+
+y=model.wv.index_to_key
+
+y
+
+len(y)
+
+from sklearn.decomposition import PCA
+pca=PCA(n_components=3)
+X=pca.fit_transform(model.wv.get_normed_vectors())
+X[:5]
+
+X.shape
+
+import plotly.express as px
+fig=px.scatter_3d(X[300:500],x=0,y=1,z=2,color=y[300:500])
+fig.show()
+  
